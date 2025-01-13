@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    /* Existing styles remain unchanged */
+
+.service-card {
+    display: flex;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory;
+    padding: 10px 0;
+}
+
+.service-card::-webkit-scrollbar {
+    display: none;
+}
+
+.service-card .card {
+    min-width: 80%;
+    max-width: 300px;
+    flex-shrink: 0;
+}
+
+.dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.dot {
+    width: 10px;
+    height: 10px;
+    background-color: #ccc;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: #000;
+}
+
+</style>
+<body>
+    <section class="service">
+        <h3>Affordable & On-Time Cabs</h3>
+        <div class="service-card">
+            <div class="card">
+                <img src="box-img-1.webp" alt="">
+                <div class="card-con">
+                    <h4>24/7 Support</h4>
+                    <p>"Zero waiting time" is the strategy we follow for decades, which makes us reliable and
+                        responsible towards our customers. We've more than a bunch of individuals drivers who happens to
+                        be working together.</p>
+                </div>
+                <div class="fea">
+                    <div class="1">
+                        <img src="calendar.webp" alt="">
+                        <a href="">On-Time <br> cabs</a>
+                    </div>
+                    <div class="1">
+                        <img src="calendar.webp" alt="">
+                        <a href="">On-Time <br> cabs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="box-img-2.webp" alt="">
+                <div class="card-con">
+                    <h4>24/7 Support</h4>
+                    <p>"Zero waiting time" is the strategy we follow for decades, which makes us reliable and
+                        responsible towards our customers. We've more than a bunch of individuals drivers who happens to
+                        be working together.</p>
+                </div>
+                <div class="fea">
+                    <div class="1">
+                        <img src="calendar.webp" alt="">
+                        <a href="">On-Time cabs</a>
+                    </div>
+                    <div class="1">
+                        <img src="calendar.webp" alt="">
+                        <a href="">On-Time cabs</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <img src="box-img-3.webp" alt="">
+                <div class="card-con">
+                    <h4>24/7 Support</h4>
+                    <p>"Zero waiting time" is the strategy we follow for decades, which makes us reliable and
+                        responsible towards our customers. We've more than a bunch of individuals drivers who happens to
+                        be working together.</p>
+                </div>
+                <div class="fea">
+                    <div class="1">
+                        <img src="calendar.webp" alt="">
+                        <a href="">On-Time cabs</a>
+                    </div>
+                    <div class="1">
+                        <img src="calendar.webp" alt="">
+                        <a href="">On-Time cabs</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Dots for Navigation -->
+        <div class="dots">
+            <span class="dot active" data-index="0"></span>
+            <span class="dot" data-index="1"></span>
+            <span class="dot" data-index="2"></span>
+        </div>
+    </section>
+    <script>
+        const serviceCards = document.querySelector('.service-card');
+        const dots = document.querySelectorAll('.dot');
+
+        let currentIndex = 0;
+
+        function updateActiveDot(index) {
+            dots.forEach(dot => dot.classList.remove('active'));
+            dots[index].classList.add('active');
+        }
+
+        serviceCards.addEventListener('scroll', () => {
+            const cardWidth = serviceCards.querySelector('.card').offsetWidth;
+            const scrollPosition = serviceCards.scrollLeft;
+            currentIndex = Math.round(scrollPosition / cardWidth);
+            updateActiveDot(currentIndex);
+        });
+
+        dots.forEach(dot => {
+            dot.addEventListener('click', () => {
+                currentIndex = parseInt(dot.dataset.index);
+                serviceCards.scrollTo({
+                    left: currentIndex * serviceCards.querySelector('.card').offsetWidth,
+                    behavior: 'smooth',
+                });
+                updateActiveDot(currentIndex);
+            });
+        })
+
+    </script>
+</body>
+
+</html>
