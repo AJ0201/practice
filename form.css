@@ -35,9 +35,7 @@ body {
     color: #000;
     border-bottom: #ec2027 solid 1px;
 }
-.tab-header button:hover {
-    background: #ee4349;
-}
+
 .tab-content {
     padding: 20px;
     display: none;
